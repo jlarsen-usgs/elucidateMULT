@@ -25,10 +25,10 @@ mult = "SVIHM_v3.MUL"
 mlt = emult.ModflowMlt.load(os.path.join(ws, mult),
                             nrow=976, ncol=272, ext_unit_dict={})
 
+# attributes are set dynamically based on mult array names!
+hk2 = mlt.hk_lay2
 
-hk2 = mlt.mult_dict["hk_lay2"]
-
-plt.imshow(hk2.array, interpolation="None")
+plt.imshow(hk2, interpolation="None")
 plt.show()
 ```
 
