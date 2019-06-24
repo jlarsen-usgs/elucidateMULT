@@ -28,3 +28,7 @@ hk2 = mlt.mult_dict["hk_lay2"]
 plt.imshow(hk2.array, interpolation="None")
 plt.show()
 ```
+
+<p align="center">
+  <img src="https://raw.githubusercontent.com/jlarsen-usgs/elucidateMULT/master/examples/example.PNG" alt="example"/>
+</p>
