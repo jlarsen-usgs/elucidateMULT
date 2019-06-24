@@ -20,17 +20,9 @@ class ModflowMlt(object):
 
     Parameters
     ----------
-    model : model object
-        The model object (of type :class:`flopy.modflow.mf.Modflow`) to which
-        this package will be added.
     mult_dict : dict
         Dictionary with mult data for the model. mult_dict is typically
         instantiated using load method.
-    extension : string
-        Filename extension (default is 'drn')
-    unitnumber : int
-        File unit number (default is 21).
-
 
     Attributes
     ----------
@@ -41,18 +33,13 @@ class ModflowMlt(object):
     See Also
     --------
 
-    Notes
-    -----
-    Parameters are supported in Flopy only when reading in existing models.
-    Parameter values are converted to native values in Flopy and the
-    connection to "parameters" is thus nonexistent.
 
     Examples
     --------
 
-    >>> import flopy
-    >>> m = flopy.modflow.Modflow()
-    >>> mltdict = flopy.modflow.ModflowZon(m, mult_dict=mult_dict)
+    >>> import emult
+    >>>
+    >>> mlt = emult.ModflowMlt.load("test.mult", nrow=10, ncol=10)
 
     """
 
@@ -63,8 +50,21 @@ class ModflowMlt(object):
             self.nml = len(mult_dict)
             self.mult_dict = mult_dict
             self.mult_equations = mult_equations
-            # print mult_dict
-        # self.parent.add_package(self)
+
+    def __getattr__(self, item):
+        """
+        Syntactic sugar!!!!!
+
+        Parameters:
+            item: attiribute name
+
+        Returns:
+            attribute or numpy array!
+        """
+        if item in self.mult_dict:
+            return self.mult_dict[item].array
+        else:
+            super(self, ModflowMlt).__getattribute__(item)
 
     @staticmethod
     def load(f, nrow, ncol, ext_unit_dict=None):
@@ -75,15 +75,10 @@ class ModflowMlt(object):
         ----------
         f : filename or file handle
             File to load.
-        model : model object
-            The model object (of type :class:`flopy.modflow.mf.Modflow`) to
-            which this package will be added.
         nrow : int
-            number of rows. If not specified it will be retrieved from
-            the model object. (default is None).
+            number of rows.
         ncol : int
-            number of columns. If not specified it will be retrieved from
-            the model object. (default is None).
+            number of columns.
         ext_unit_dict : dictionary, optional
             If the arrays in the file are specified using EXTERNAL,
             or older style array control records, then `f` should be a file
@@ -106,9 +101,6 @@ class ModflowMlt(object):
         import flopy as fp
 
         model = fp.modflow.Modflow("imadummy")
-
-        # if model.verbose:
-        #     sys.stdout.write('loading mult package file...\n')
 
         if not hasattr(f, 'read'):
             filename = f
@@ -154,7 +146,6 @@ class ModflowMlt(object):
             else:
                 line = f.readline().rstrip()
                 t = [kwrd, line]
-                # todo: use an if kwrd == function, elif kwrd == expression
                 if kwrd == 'function':
                     parser = FunctionParser(line, mult_dict)
                 elif kwrd == 'expression':

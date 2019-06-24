@@ -11,8 +11,8 @@ mlt = emult.ModflowMlt.load(os.path.join(ws, mult),
 
 
 hk2 = mlt.mult_dict["hk_lay2"]
-
-plt.imshow(hk2.array, interpolation="None")
+hk2 = mlt.hk_lay2
+plt.imshow(hk2, interpolation="None")
 plt.show()
 
 print('break')
