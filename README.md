@@ -30,5 +30,5 @@ plt.show()
 ```
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/jlarsen-usgs/elucidateMULT/tree/master/examples/example.PNG" alt="example"/>
+  <img src="https://raw.githubusercontent.com/jlarsen-usgs/elucidateMULT/master/examples/example.png" alt="example"/>
 </p>
