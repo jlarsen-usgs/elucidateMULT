@@ -2,8 +2,8 @@
 A stripped down package to convert MODFLOW mult inputs to Arrays
 
 ## Requirements
-Numpy
-FloPy
+* Numpy  
+* FloPy
 
 ## Installation
 Download the package and open a command prompt or anaconda prompt  
