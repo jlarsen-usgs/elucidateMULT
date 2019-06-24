@@ -21,20 +21,17 @@ hk2 = mlt.hk_lay2
 
 # to loop through and plot everything!
 for key, value in mult_dict.items():
-    # fname = key + ".txt"
-    # np.savetxt(fname, value.array, delimiter=" ", fmt="%.6f")
     plt.imshow(value.array, interpolation="None")
     plt.colorbar()
     plt.title(key)
     plt.show()
 
 # to write everything in the dict into array files
+ws = "output_arrays"
 for key, value in mult_dict.items():
     fname = key + ".txt"
-    np.savetxt(fname, value.array, delimiter=" ", fmt="%.6f")
+    np.savetxt(os.path.join(ws, fname), value.array, delimiter=" ", fmt="%.6f")
 
 # to plot
 plt.imshow(hk2, interpolation="None")
 plt.show()
-
-print('break')
