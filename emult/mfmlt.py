@@ -11,7 +11,7 @@ import collections
 import numpy as np
 
 from flopy.utils import Util2d
-from expression_parser import FunctionParser, ExpressionParser
+from .expression_parser import FunctionParser, ExpressionParser
 
 
 class ModflowMlt(object):

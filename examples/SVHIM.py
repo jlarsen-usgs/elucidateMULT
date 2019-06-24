@@ -1,13 +1,12 @@
-import numpy as np
-import mfmlt
+import emult
 import os
 import matplotlib.pyplot as plt
 
 
-ws = "./Josh_Test/MULT/"
+ws = "./MULT/"
 mult = "SVIHM_v3.MUL"
 
-mlt = mfmlt.ModflowMlt.load(os.path.join(ws, mult),
+mlt = emult.ModflowMlt.load(os.path.join(ws, mult),
                             nrow=976, ncol=272, ext_unit_dict={})
 
 
