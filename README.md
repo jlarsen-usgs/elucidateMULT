@@ -1,5 +1,5 @@
 # elucidateMULT
-A stripped down package to convert MODFLOW mult inputs to Arrays
+Convert MODFLOW MULT package expressions and functions into arrays
 
 ## Requirements
 * Numpy  
